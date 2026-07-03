@@ -1,0 +1,180 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>akhi0000189-dev | System Online</title>
+    <style>
+        /* Fundamental CSS Variables for easy theming */
+        :root {
+            --bg-color: #0a0a0f;
+            --text-color: #e0e0e0;
+            --accent-color: #00ff88;
+            --grid-color: rgba(0, 255, 136, 0.05);
+            --card-bg: rgba(255, 255, 255, 0.03);
+            --border-color: rgba(0, 255, 136, 0.2);
+        }
+
+        /* Reset and Base Setup */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
+            background-color: var(--bg-color);
+            color: var(--text-color);
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            overflow: hidden;
+            /* Dev-style grid background */
+            background-image: 
+                linear-gradient(var(--grid-color) 1px, transparent 1px),
+                linear-gradient(90deg, var(--grid-color) 1px, transparent 1px);
+            background-size: 40px 40px;
+        }
+
+        /* Main Container */
+        .container {
+            text-align: center;
+            padding: 2rem;
+            border: 1px solid var(--border-color);
+            border-radius: 12px;
+            background-color: var(--card-bg);
+            backdrop-filter: blur(10px);
+            box-shadow: 0 0 30px rgba(0, 255, 136, 0.05);
+            max-width: 600px;
+            width: 90%;
+            position: relative;
+            z-index: 10;
+        }
+
+        /* Animated Status Dot */
+        .status-dot {
+            height: 12px;
+            width: 12px;
+            background-color: var(--accent-color);
+            border-radius: 50%;
+            display: inline-block;
+            margin-bottom: 1.5rem;
+            box-shadow: 0 0 15px var(--accent-color);
+            animation: pulse 2s infinite;
+        }
+
+        @keyframes pulse {
+            0% { box-shadow: 0 0 0 0 rgba(0, 255, 136, 0.7); }
+            70% { box-shadow: 0 0 0 15px rgba(0, 255, 136, 0); }
+            100% { box-shadow: 0 0 0 0 rgba(0, 255, 136, 0); }
+        }
+
+        /* Typography */
+        h1 {
+            font-size: 2.5rem;
+            font-weight: 700;
+            color: #ffffff;
+            margin-bottom: 0.5rem;
+            letter-spacing: -1px;
+            text-shadow: 0 0 20px rgba(0, 255, 136, 0.3);
+        }
+
+        .subtitle {
+            color: var(--accent-color);
+            font-family: 'Courier New', Courier, monospace;
+            font-size: 1rem;
+            margin-bottom: 2.5rem;
+            font-weight: 600;
+        }
+
+        /* Terminal Style Readout */
+        .terminal-box {
+            background-color: rgba(0, 0, 0, 0.5);
+            border: 1px solid var(--border-color);
+            border-radius: 6px;
+            padding: 1.5rem;
+            text-align: left;
+            font-family: 'Courier New', Courier, monospace;
+            font-size: 0.9rem;
+            line-height: 1.8;
+            margin-bottom: 2rem;
+        }
+
+        .terminal-box .label {
+            color: #888;
+        }
+
+        .terminal-box .value {
+            color: var(--accent-color);
+        }
+
+        .terminal-box .warning {
+            color: #ffb347;
+        }
+
+        /* Footer */
+        footer {
+            margin-top: 1rem;
+            font-size: 0.8rem;
+            color: #555;
+        }
+
+        footer span {
+            color: var(--accent-color);
+        }
+
+        /* Responsive adjustments for mobile devices */
+        @media (max-width: 480px) {
+            h1 { font-size: 1.8rem; }
+            .terminal-box { font-size: 0.8rem; padding: 1rem; }
+        }
+    </style>
+</head>
+<body>
+
+    <div class="container">
+        <!-- Visual Indicator of Success -->
+        <div class="status-dot"></div>
+        
+        <h1>Connection Secure</h1>
+        <div class="subtitle">// ROUTING TEST SUCCESSFUL</div>
+
+        <!-- Data Readout -->
+        <div class="terminal-box">
+            <div><span class="label">[DOMAIN] :</span> <span class="value">akhi0000189-dev.is-a.dev</span></div>
+            <div><span class="label">[HOST]   :</span> <span class="value">GitHub Pages Servers</span></div>
+            <div><span class="label">[STATUS] :</span> <span class="value">200 OK - ACTIVE</span></div>
+            <div><span class="label">[TIME]   :</span> <span class="value" id="live-clock">Loading...</span></div>
+            <br>
+            <div><span class="warning">[NOTICE] :</span> <span class="label">If you can read this, your DNS, JSON configuration, and GitHub repository are perfectly synced.</span></div>
+        </div>
+
+        <footer>
+            Served via <span>GitHub Actions</span> &bull; Built with fundamentals
+        </footer>
+    </div>
+
+    <!-- Vanilla JS for the live clock (no external libraries) -->
+    <script>
+        function updateClock() {
+            const now = new Date();
+            const options = { 
+                timeZone: 'UTC', 
+                hour: '2-digit', 
+                minute: '2-digit', 
+                second: '2-digit',
+                hour12: false 
+            };
+            const timeString = now.toLocaleTimeString('en-US', options);
+            document.getElementById('live-clock').textContent = timeString + ' UTC';
+        }
+        
+        // Update immediately, then every second
+        updateClock();
+        setInterval(updateClock, 1000);
+    </script>
+</body>
+</html>
